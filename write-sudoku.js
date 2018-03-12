@@ -1,3 +1,4 @@
+//This method gets the filled sudoku array and writes it to the console
 function writeSudoku(sudoku) {
   let text = ""
   for (let i = 0; i <= 8; i++) {
@@ -15,7 +16,6 @@ function writeSudoku(sudoku) {
   }
 
   console.log(text)
-
 }
 
 module.exports = writeSudoku

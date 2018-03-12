@@ -1,14 +1,12 @@
 const solveSudoku = require('./solve-sudoku')
-const writeSudoku = require('./write-sudoku')
 
-let sudoku = []
+let sudokuBoard = []
 
-function createEmptySudoku() {
-  for (let i = 0; i <= 81; i++) {
-    sudoku.push(0)
+function fillEmptyBoard() { //fills the empty board with zeroes
+  for (let i = 0; i <= 80; i++) {
+    sudokuBoard.push(0)
   }
 }
 
-createEmptySudoku()
-solveSudoku(sudoku)
-writeSudoku(sudoku)
+fillEmptyBoard()
+solveSudoku(sudokuBoard)
