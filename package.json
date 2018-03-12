@@ -1,0 +1,19 @@
+{
+  "name": "sudoku",
+  "version": "1.0.0",
+  "description": "Generates a solved sudoku in the console",
+  "main": "generate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HRosqvist/Sudoku.git"
+  },
+  "author": "Henrik Rosqvist",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HRosqvist/Sudoku/issues"
+  },
+  "homepage": "https://github.com/HRosqvist/Sudoku#readme"
+}
