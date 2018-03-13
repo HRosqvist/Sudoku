@@ -1,8 +1,9 @@
 //This class is responsible for solving the empty board
 const validateSudoku = require('./validate-sudoku')
 const writeSudoku = require('./write-sudoku')
-const checkNumber = require('./check-number')
+const checkSquare = require('./check-square')
 
+//Solves the board
 function solveSudoku(sudokuBoard) {
 	let saved = []
 	let savedSudoku = []
@@ -29,29 +30,32 @@ function solveSudoku(sudokuBoard) {
 	writeSudoku(sudokuBoard)
 }
 
+//This function returns a two-dimensional array containing
+//every legal move for each square returns false if no legal moves are found
 function checkBoard(sudokuBoard) {
-	var emptyPositions = []
+	let possibleMoves = []
 
-	for (var i = 0; i <= 80; i++) {
+	for (let i = 0; i <= 80; i++) {
 		if (sudokuBoard[i] === 0) {
-			emptyPositions[i] = []
-			emptyPositions[i] = checkNumber(i, sudokuBoard)
-			if (emptyPositions[i].length === 0) {
+			possibleMoves[i] = []
+			possibleMoves[i] = checkSquare(i, sudokuBoard)
+			if (possibleMoves[i].length === 0) {
 				return false
 			}
 		}
 	}
 
-	return emptyPositions
+	return possibleMoves
 }
 
-function nextRandom(emptyPositions) {
-	var max = 9
-	var min = 0
-	for (var i = 0; i <= 80; i++) {
-		if (typeof emptyPositions[i] !== 'undefined') {
-			if ((emptyPositions[i].length <= max) && (emptyPositions[i].length > 0)) {
-				max = emptyPositions[i].length
+//Returns the square with the fewest legal moves
+function nextRandom(possibleMoves) {
+	let max = 9
+	let min = 0
+	for (let i = 0; i <= 80; i++) {
+		if (typeof possibleMoves[i] !== 'undefined') {
+			if ((possibleMoves[i].length <= max) && (possibleMoves[i].length > 0)) {
+				max = possibleMoves[i].length
 				min = i
 			}
 		}
@@ -59,14 +63,16 @@ function nextRandom(emptyPositions) {
 	return min
 }
 
-function getRandomNumber(emptyPositions, square) {
-	var number = Math.floor(Math.random() * emptyPositions[square].length)
-	return emptyPositions[square][number]
+//Returns a random number that is legal for the given square
+function getRandomNumber(possibleMoves, square) {
+	const number = Math.floor(Math.random() * possibleMoves[square].length)
+	return possibleMoves[square][number]
 }
 
+//Backtracks if a move is not legal
 function backtrack(attemptArray, number) {
-	var newArray = []
-	for (var i = 0; i < attemptArray.length; i++) {
+ 	let newArray = []
+	for (let i = 0; i < attemptArray.length; i++) {
 		if (attemptArray[i] !== number) {
 			newArray.unshift(attemptArray[i])
 		}

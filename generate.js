@@ -1,4 +1,4 @@
-const solveSudoku = require('./solve-sudoku')
+const solveSudoku = require('./methods/solve-sudoku')
 
 let sudokuBoard = []
 
